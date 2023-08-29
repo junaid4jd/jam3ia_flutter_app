@@ -540,36 +540,103 @@ class _RegisterViewState extends State<RegisterView> {
                           ),
 
 
+
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: RoundButton(
-                              width: size.width,
-                              //isLoading: authViewModel.loading,
-                              round: 30.0,
-                              color: AppColors.darkBlueColor,
-                              title: 'Upload your id',
-                              onPress: () {
-                              },
+                            padding: EdgeInsets.only(left: 20, right: 20, top: 0),
+                            child: Container(
+                              // width: size.width,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 0, right: 8),
+                                    child: Container(
+                                      decoration:
+
+                                      BoxDecoration(
+                                        // boxShadow: const [
+                                        //   BoxShadow(
+                                        //       color: Colors.black26,
+                                        //       offset: Offset(0, 4),
+                                        //       blurRadius: 5.0)
+                                        // ],
+                                        color: AppColors.testColor.withOpacity(0.3),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ) ,
+                                      child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                            ),
+                                            minimumSize: MaterialStateProperty.all(Size(size.width*0.35, 50)),
+                                            backgroundColor:
+                                            MaterialStateProperty.all(Colors.transparent),
+                                            // elevation: MaterialStateProperty.all(3),
+                                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          ),
+                                         onPressed: (){},
+                                          child: Text(
+    'Upload your ID',
+                                            style:  TextStyle(
+                                                fontSize: 12,
+                                                color:
+                                                AppColors.orangeColor, overflow: TextOverflow.ellipsis),
+                                          )),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 0, right: 0),
+                                    child: Container(
+                                      decoration:
+
+                                      BoxDecoration(
+                                        // boxShadow: const [
+                                        //   BoxShadow(
+                                        //       color: Colors.black26,
+                                        //       offset: Offset(0, 4),
+                                        //       blurRadius: 5.0)
+                                        // ],
+                                        color: AppColors.testColor.withOpacity(0.3),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ) ,
+                                      child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                            ),
+                                            minimumSize: MaterialStateProperty.all(Size(size.width*0.32, 50)),
+                                            backgroundColor:
+                                            MaterialStateProperty.all(Colors.transparent),
+                                            // elevation: MaterialStateProperty.all(3),
+                                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                          ),
+                                          onPressed: (){},
+                                          child: Text(
+                                            'Upload recent salary slip',
+                                            style:  TextStyle(
+                                                fontSize: 12,
+                                                color:
+                                            AppColors.orangeColor, overflow: TextOverflow.ellipsis),
+                                          )),
+                                    ),
+                                  ),
+
+                                ],
+                              ),
                             ),
                           ),
+
+
 
 
                           SizedBox(
                             height: size.height*0.025,
                           ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: RoundButton(
-                              width: size.width,
-                              //isLoading: authViewModel.loading,
-                              round: 30.0,
-                              color: AppColors.darkBlueColor,
-                              title: 'Upload recent salary slip',
-                              onPress: () {
-                              },
-                            ),
-                          ),
 
 
                           SizedBox(

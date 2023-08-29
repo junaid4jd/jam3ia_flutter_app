@@ -202,16 +202,19 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
               height: size.height*0.01,
             ),
             Container(
-              height: size.height*0.75,
+              height: size.height*0.7,
               child: Padding(
                 padding: const EdgeInsets.only(left: 8,right: 8),
                 // implement GridView.builder
                 child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 16 / 9,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10),
+                    gridDelegate:
+                    SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 110,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      // Number of columns in the grid
+                    ),
+
                     itemCount: DummyData.monthList.length,
                     itemBuilder: (BuildContext ctx, index) {
                       return GestureDetector(
@@ -223,22 +226,6 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
                             });
                             showBottomSheet(context);
 
-                            // Navigator.push(
-                            //   context,
-                            //   PageRouteBuilder(
-                            //     pageBuilder: (context, animation, secondaryAnimation) => PaymentView(),
-                            //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            //       const begin = Offset(1.0, 0.0);
-                            //       const end = Offset.zero;
-                            //       const curve = Curves.easeIn;
-                            //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                            //       var offsetAnimation = animation.drive(tween);
-                            //
-                            //       return SlideTransition(position: offsetAnimation, child: child);
-                            //     },
-                            //   ),
-                            // );
-
 
                           }
                           else {
@@ -249,61 +236,207 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
+                              color:
+                              // index == 0 ? AppColors.yellowColor :
+                              // index == 1 ? AppColors.darkBlueColor.withOpacity(0.7) :
+                              // index == 2 ? AppColors.darkRedColor.withOpacity(0.8) :
+                              // index == 3 ? AppColors.greenColor :
+                              // index == 4 ? AppColors.testColor :
+                              // index == 5 ? AppColors.yellowColor :
+                              // index == 6 ? AppColors.purpleColor2 :
+                              // index == 7 ? AppColors.darkBlueColor.withOpacity(0.7) :
+                              // index == 8 ? AppColors.lightGreenColor :
+                              // index == 9 ? AppColors.greenColor :
+                              // index == 10 ? AppColors.testColor :
+                              // index == 11 ? AppColors.orangeColor :
+
+                              AppColors.whiteColor,
+
+
+                              gradient:
+                              index == 0 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.greyColor,
+                                  AppColors.lightGreyColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 1 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                 Colors.green,
+                                  Colors.green.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 2 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.darkBlueColor,
+                                  AppColors.darkBlueColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 3 ?  LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.darkBlueColor,
+                                  AppColors.darkBlueColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 4 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  Colors.green,
+                                  Colors.green.withOpacity(0.2),
+                                ],
+                              ) :
+
+                              index == 5 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.greyColor,
+                                  AppColors.lightGreyColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 6 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  Colors.green,
+                                  Colors.green.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 7 ?  LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.darkBlueColor,
+                                  AppColors.darkBlueColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 8 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.greyColor,
+                                  AppColors.lightGreyColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 9 ?  LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.darkBlueColor,
+                                  AppColors.darkBlueColor.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 10 ? LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  Colors.green,
+                                  Colors.green.withOpacity(0.2),
+                                ],
+                              ) :
+                              index == 11 ?  LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.darkBlueColor,
+                                  AppColors.darkBlueColor.withOpacity(0.2),
+                                ],
+                              ) :
+
+
+                              LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                stops: [0.0, 1.0],
+                                colors: [
+                                  AppColors.yellowColor,
+                                  AppColors.yellowColor.withOpacity(0.2),
+                                ],
+                              ),
+
                               borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: selectedIndex == index ? AppColors.purpleColor : AppColors.greyColor,width: 0.5)
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(
+                                height: size.height*0.015,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8,right: 8,bottom: 4,top: 4),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                     Container(
-                                      decoration: BoxDecoration(
+                                child:  Container(
+                                  decoration: BoxDecoration(
+                                      color:
+                                      DummyData.monthList[index].locked ? AppColors.greyColor :
+                                      DummyData.monthList[index].locked != true && DummyData.monthList[index].reserved != true ? AppColors.purpleColor2 :
+
+
+
+                                      AppColors.yellowColor,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8, top: 4, bottom: 4),
+                                    child: Text(
+                                      DummyData.monthList[index].locked ? 'Locked' :
+                                      DummyData.monthList[index].reserved
+                                          ? 'Reserved'
+                                          : 'Available',
+                                      style: TextStyle(
+                                        fontSize: 10,
                                           color:
-                                          DummyData.monthList[index].locked ? AppColors.greyColor :
-                                          DummyData.monthList[index].locked != true && DummyData.monthList[index].reserved != true ? AppColors.darkGreenColor :
-
-
-
-                                          AppColors.yellowColor,
-                                          borderRadius: BorderRadius.circular(15)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, right: 8, top: 4, bottom: 4),
-                                        child: Text(
-                                          DummyData.monthList[index].locked ? 'Locked' :
-                                          DummyData.monthList[index].reserved
-                                              ? 'Reserved'
-                                              : 'Available',
-                                          style: TextStyle(
-                                              color:
-                                              DummyData.monthList[index].locked ? AppColors.lightGreyColor :
-                                              DummyData.monthList[index].locked != true && DummyData.monthList[index].reserved != true ? AppColors.whiteColor :
-                                              AppColors.blackColor,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
+                                          DummyData.monthList[index].locked ? AppColors.lightGreyColor :
+                                          DummyData.monthList[index].locked != true && DummyData.monthList[index].reserved != true ? AppColors.whiteColor :
+                                          AppColors.blackColor,
+                                          fontWeight: FontWeight.w500),
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
+                              SizedBox(
+                                height: size.height*0.03,
+                              ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.only(left: 0),
                                       child: RichText(
+                                        textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          text: '   ' +
+                                          text:
                                               DummyData.monthList[index].name.toString(),
                                           style: TextStyle(
+
                                               color:
                                               DummyData.monthList[index].locked ? AppColors.greyColor.withOpacity(0.6) :
                                               AppColors.blackColor,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18),
+                                              fontSize: 13),
+
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: '  2023',
@@ -312,7 +445,7 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
                                                     DummyData.monthList[index].locked ? AppColors.greyColor.withOpacity(0.6) :
                                                     AppColors.blackColor,
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 10)),
+                                                    fontSize: 10),),
                                           ],
                                         ),
                                       )),
@@ -333,7 +466,7 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
             Container(
               width: size.width*0.9,
               decoration: BoxDecoration(
-                color: AppColors.lightGreenColor.withOpacity(0.2)
+                color: AppColors.lightBlueColor2
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

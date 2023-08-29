@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 class AppColors {
 
+  static const Color testColor =  Color(0xFFFFD580);
   static const Color lightBlueColor =  Color(0xFF2AB3C6);
+  static const Color lightBlueColor2 =  Color(0xFFe8efff);
   static const Color lightBlueColor1 =  Color(0xFF7287fa);
   static const Color darkBlueColor =  Color(0xFF005CE6);
   static const Color purpleColor =  Color(0xFF8576d2);
+  static const Color purpleColor2 =  Color(0xFF7b55ff);
   static const Color yellowColor =  Color(0xFFFFFF66);
   static const Color lightGreenColor =  Color(0xFFD3F589);
   static const Color darkGreenColor =  Color(0xFF9AC142);

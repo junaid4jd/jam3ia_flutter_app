@@ -20,25 +20,6 @@ class _InviteFriendViewState extends State<InviteFriendView> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.lightGreyColor3,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   iconTheme: IconThemeData(
-      //     color: Colors.black
-      //   ),
-      //
-      //   backgroundColor: AppColors.whiteColor,
-      //   centerTitle: true,
-      //   automaticallyImplyLeading: true,
-      //   title: const Text(
-      //     'Invite friends',
-      //     style: TextStyle(
-      //         color: AppColors.darkGreenColor,
-      //         fontWeight: FontWeight.bold,
-      //         fontSize: TextStylesData.titleFontSize),
-      //   ),
-      //
-      // ),
-
       body: Container(
         width: size.width,
         height: size.height,
@@ -392,71 +373,6 @@ class _InviteFriendViewState extends State<InviteFriendView> {
           ],
         ),
       ),
-
-
-      // Column(
-      //   children: [
-      //     SizedBox(
-      //       height: size.height*0.02,
-      //     ),
-      //     Center(
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(8.0),
-      //         child: Container(
-      //           child: Image.asset('assets/images/invite.png', height: 100,width: 100,),
-      //         ),
-      //       ),
-      //     ),
-      //     SizedBox(
-      //       height: size.height*0.02,
-      //     ),
-      //     Container(
-      //       width: size.width*0.9,
-      //       decoration: BoxDecoration(
-      //           color: Colors.blue.withOpacity(0.1)
-      //       ),
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(8.0),
-      //         child: Text('Encourage your friends to save smart, invite them to download the app and enjoy Jam3ia hassle free money circle',
-      //           style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),),
-      //       ),
-      //     ),
-      //     SizedBox(
-      //       height: size.height*0.04,
-      //     ),
-      //
-      //     Container(
-      //       width: size.width*0.9,
-      //       child: Text('Invitation link', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
-      //     ),
-      //     SizedBox(
-      //       height: size.height*0.02,
-      //     ),
-
-      //     SizedBox(
-      //       height: size.height * 0.2,
-      //     ),
-      //     Padding(
-      //       padding: const EdgeInsets.only(left: 20, right: 20),
-      //       child: RoundButton(
-      //         width: size.width,
-      //         //isLoading: authViewModel.loading,
-      //         round: 30.0,
-      //         color: Colors.orange,
-      //         title: 'Invite friends',
-      //         onPress: () {
-      //           // Navigator.pushNamed(context, RoutesName.dashView);
-      //         },
-      //       ),
-      //     ),
-      //     SizedBox(
-      //       height: size.height * 0.05,
-      //     ),
-      //
-      //
-      //
-      //   ],
-      // ),
 
     );
   }

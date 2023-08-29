@@ -42,6 +42,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: IntroScreenOnboarding(
         backgroudColor: AppColors.whiteColor,
         introductionList: list,

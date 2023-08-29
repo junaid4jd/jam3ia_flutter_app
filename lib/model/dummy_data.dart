@@ -26,7 +26,6 @@ class DummyData {
     SettingsModel(name: 'Edit Profile', isIcon: true, icon: Icon(Icons.edit,size: 20,color: Colors.orange,), image: ''),
     SettingsModel(name: 'My Circles', isIcon: true, icon: Icon(Icons.account_box_rounded,size: 20,color: Colors.orange,), image: ''),
     SettingsModel(name: 'My Points', isIcon: true, icon: Icon(Icons.point_of_sale,size: 20,color: Colors.orange,), image: ''),
-    SettingsModel(name: 'Screening', isIcon: true, icon: Icon(Icons.document_scanner,size: 20,color: Colors.orange,), image: ''),
     SettingsModel(name: 'Installments Report', isIcon: true, icon: Icon(Icons.report_gmailerrorred,size: 20,color: Colors.orange,), image: ''),
     SettingsModel(name: 'Payments', isIcon: true, icon: Icon(Icons.wallet,size: 20,color: Colors.orange,), image: ''),
     SettingsModel(name: 'Notifications', isIcon: true, icon: Icon(Icons.notification_important_outlined,size: 20,color: Colors.orange,), image: ''),
