@@ -314,35 +314,8 @@ class _SettingViewState extends State<SettingView> {
                               ),
                             );
                           }
+
                           else if(index == 3 ) {
-
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => ScreeningView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-                            // Navigator.push(
-                            //     context,
-                            //     PageRouteBuilder(
-                            //       pageBuilder: (context, animation, secondaryAnimation) => ScreeningView(),
-                            //       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            //         const begin = Offset(1.0, 0.0);
-                            //         const end = Offset.zero;
-                            //         const curve = Curves.easeIn;
-                            //         var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                            //         var offsetAnimation = animation.drive(tween);
-                            //
-                            //         return SlideTransition(position: offsetAnimation, child: child);
-                            //       },
-                            //     ),
-                            // );
-
-                          }
-                          else if(index == 4 ) {
                             //Navigator.pushNamed(context, RoutesName.installmentReportView);
 
                             Navigator.push(
@@ -355,7 +328,30 @@ class _SettingViewState extends State<SettingView> {
                             );
 
                           }
-                          else if(index == 7 ) {
+                          else if(index == 4 ) {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => PaymentView(),
+                                transitionDuration: Duration(milliseconds: 300),
+                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                              ),
+                            );
+
+
+
+                          }
+                          else if(index == 5 ) {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => NotificationView(),
+                                transitionDuration: Duration(milliseconds: 300),
+                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                              ),
+                            );
+                          }
+                          else if(index == 6 ) {
 
 
                             Navigator.push(
@@ -385,40 +381,7 @@ class _SettingViewState extends State<SettingView> {
                             //
                             //
                           }
-                          else if(index == 5 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => PaymentView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-
-
-                          }
-                          else if(index == 6 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => NotificationView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-                          else if(index == 10 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => VerifyPhoneView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-                          if(index == 8 ) {
+                          else if(index == 7 ) {
                             Navigator.push(
                               context,
                               PageRouteBuilder(
@@ -428,7 +391,7 @@ class _SettingViewState extends State<SettingView> {
                               ),
                             );
                           }
-                          if(index == 9 ) {
+                          if(index == 8 ) {
 
                             _showBottomSheet(context);
 
@@ -441,6 +404,18 @@ class _SettingViewState extends State<SettingView> {
                             //   ),
                             // );
                           }
+                          else if(index == 9 ) {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => VerifyPhoneView(),
+                                transitionDuration: Duration(milliseconds: 300),
+                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                              ),
+                            );
+                          }
+
+
 
 
                         },

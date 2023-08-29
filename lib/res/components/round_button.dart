@@ -34,9 +34,9 @@ class RoundButton extends StatelessWidget {
               decoration:
               title == 'Upload recent salary slip'
                   || title ==  'Upload your id'
-                  || title ==  'Upload bank transfer guarantee'
+                  || title ==  'Upload bank transfer'
                   || title ==  'Upload Promissory'
-                  || title ==  'Upload official agreement with Jam3ia'
+                  || title ==  'Upload official agreement'
 
                   ?
               BoxDecoration(
@@ -79,9 +79,9 @@ class RoundButton extends StatelessWidget {
                     style:  TextStyle(color:
                     title == 'Upload recent salary slip'
                         || title ==  'Upload your id'
-                        || title ==  'Upload bank transfer guarantee'
+                        || title ==  'Upload bank transfer'
                         || title ==  'Upload Promissory'
-                        || title ==  'Upload official agreement with Jam3ia'
+                        || title ==  'Upload official agreement'
                         ? AppColors.darkBlueColor :
                     Colors.white),
                   )),

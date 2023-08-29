@@ -162,7 +162,7 @@ class _SignedDocViewState extends State<SignedDocView> {
                               //isLoading: authViewModel.loading,
                               round: 30.0,
                               color: AppColors.darkGreenColor,
-                              title: 'Upload bank transfer guarantee',
+                              title: 'Upload bank transfer',
                               onPress: () {
                               },
                             ),
