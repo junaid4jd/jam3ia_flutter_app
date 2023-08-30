@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jam3ia_flutter_app/model/dummy_data.dart';
 import 'package:jam3ia_flutter_app/res/colors.dart';
 import 'package:jam3ia_flutter_app/res/components/app_text.dart';
+import 'package:jam3ia_flutter_app/res/components/round_button.dart';
 import 'package:jam3ia_flutter_app/utils/routes/routes_name.dart';
 import 'package:jam3ia_flutter_app/view/authentication/phone_view.dart';
 import 'package:jam3ia_flutter_app/view/classificationsCircles/classification_circle_view.dart';
@@ -258,192 +259,294 @@ class _SettingViewState extends State<SettingView> {
       ),
 
       body:   SingleChildScrollView(
-        child: Container(
-          //width: size.width*0.9,
-          height: size.height*0.8,
-          child: ListView.builder(
-              padding: EdgeInsets.only(top: 8),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: DummyData.settingList.length,
-              itemBuilder: ( context ,  index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 4,bottom: 4,left: 8,right: 8),
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.whiteColor,
-                    ),
-                    // color: AppColors.lightGreyColor,
-                    //width: size.width*0.9,
-                    child: Center(
-                      child: ListTile(
-                        onTap: () {
-                          if(index == 0 ) {
+        child: Column(
+          children: [
 
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => ProfileView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
+            Padding(
+              padding: const EdgeInsets.only(top: 4,bottom: 4,left: 8,right: 8),
+              child: Container(
 
-                         else if(index == 1) {
-
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => MyCirclesView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-                          }
-                         else  if(index == 2 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => PointsView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-
-                          else if(index == 3 ) {
-                            //Navigator.pushNamed(context, RoutesName.installmentReportView);
-
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => InstallmentReportView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-                          }
-                          else if(index == 4 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => PaymentView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-
-
-                          }
-                          else if(index == 5 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => NotificationView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-                          else if(index == 6 ) {
-
-
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => InviteFriendView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-
-                            // Navigator.push(
-                            //   context,
-                            //   PageRouteBuilder(
-                            //     pageBuilder: (context, animation, secondaryAnimation) => InviteFriendView(),
-                            //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            //       const begin = Offset(1.0, 0.0);
-                            //       const end = Offset.zero;
-                            //       const curve = Curves.easeIn;
-                            //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                            //       var offsetAnimation = animation.drive(tween);
-                            //
-                            //       return SlideTransition(position: offsetAnimation, child: child);
-                            //     },
-                            //   ),
-                            // );
-                            //
-                            //
-                          }
-                          else if(index == 7 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => SignedDocView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-                          if(index == 8 ) {
-
-                            _showBottomSheet(context);
-
-                            // Navigator.push(
-                            //   context,
-                            //   PageRouteBuilder(
-                            //     pageBuilder: (_, __, ___) => UserClassificationView(),
-                            //     transitionDuration: Duration(milliseconds: 200),
-                            //     transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                            //   ),
-                            // );
-                          }
-                          else if(index == 9 ) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (_, __, ___) => VerifyPhoneView(),
-                                transitionDuration: Duration(milliseconds: 300),
-                                transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
-                              ),
-                            );
-                          }
-
-
-
-
-                        },
-                        hoverColor: AppColors.whiteColor,
-                        splashColor: AppColors.whiteColor,
-                        minLeadingWidth: 60,
-                        minVerticalPadding: 10,
-                        horizontalTitleGap: 10,
-                        contentPadding: EdgeInsets.zero,
-
-                        leading: Padding(
-                          padding: const EdgeInsets.only(left: 4,bottom: 6),
-                          child: Container(
-                            width: 50,height: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.orangeAccent.withOpacity(0.2)
-                            ),
-                            child: Center(child: DummyData.settingList[index].icon),
-                          ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.whiteColor,
+                ),
+                // color: AppColors.lightGreyColor,
+                //width: size.width*0.9,
+                child: Center(
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => ProfileView(),
+                          transitionDuration: Duration(milliseconds: 300),
+                          transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
                         ),
-                        title: Text(DummyData.settingList[index].name.toString(), style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),),
-                        //      trailing: Icon(Icons.arrow_forward_ios, color: AppColors.purpleColor,size: 13,),
+                      );
+                    },
+                    hoverColor: AppColors.whiteColor,
+                    splashColor: AppColors.whiteColor,
+                    minLeadingWidth: 60,
+                    minVerticalPadding: 10,
+                    horizontalTitleGap: 10,
+                    contentPadding: EdgeInsets.zero,
+
+                    leading: Padding(
+                      padding: const EdgeInsets.only(left: 4,bottom: 6),
+                      child: Container(
+                        width: 50,height: 100,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+
+                        ),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage('https://i.pinimg.com/736x/f8/66/8e/f8668e5328cfb4938903406948383cf6.jpg'),
+                          radius: 100,
+                        ),
                       ),
                     ),
+                    title: Text('John Doe ', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),),
+                    subtitle: Text('+9234754699', style: TextStyle(color: Colors.grey, fontSize: 11, fontWeight: FontWeight.w400),),
+
+                    //      trailing: Icon(Icons.arrow_forward_ios, color: AppColors.purpleColor,size: 13,),
+                    trailing:
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(Icons.arrow_forward_ios, color: AppColors.greyColor,size: 14,),
+                    ),
                   ),
-                );
-              }),
+                ),
+              ),
+            ),
+
+            Container(
+              //width: size.width*0.9,
+              height: size.height*0.6,
+              child: ListView.builder(
+                  padding: EdgeInsets.only(top: 8),
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: DummyData.settingList.length,
+                  itemBuilder: ( context ,  index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 4,bottom: 4,left: 8,right: 8),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.whiteColor,
+                        ),
+                        // color: AppColors.lightGreyColor,
+                        //width: size.width*0.9,
+                        child: Center(
+                          child: ListTile(
+                            onTap: () {
+
+
+                              if(index == 0) {
+
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => MyCirclesView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+
+                              }
+                             else  if(index == 1 ) {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => PointsView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+                              }
+
+                              else if(index == 2 ) {
+                                //Navigator.pushNamed(context, RoutesName.installmentReportView);
+
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => InstallmentReportView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+
+                              }
+                              else if(index == 3 ) {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => PaymentView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+
+
+
+                              }
+                              else if(index == 4 ) {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => NotificationView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+                              }
+                              else if(index == 5 ) {
+
+
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => InviteFriendView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+
+                                // Navigator.push(
+                                //   context,
+                                //   PageRouteBuilder(
+                                //     pageBuilder: (context, animation, secondaryAnimation) => InviteFriendView(),
+                                //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                //       const begin = Offset(1.0, 0.0);
+                                //       const end = Offset.zero;
+                                //       const curve = Curves.easeIn;
+                                //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                //       var offsetAnimation = animation.drive(tween);
+                                //
+                                //       return SlideTransition(position: offsetAnimation, child: child);
+                                //     },
+                                //   ),
+                                // );
+                                //
+                                //
+                              }
+                              else if(index == 6 ) {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) => SignedDocView(),
+                                    transitionDuration: Duration(milliseconds: 300),
+                                    transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                  ),
+                                );
+                              }
+                              if(index == 7 ) {
+
+                                _showBottomSheet(context);
+
+                                // Navigator.push(
+                                //   context,
+                                //   PageRouteBuilder(
+                                //     pageBuilder: (_, __, ___) => UserClassificationView(),
+                                //     transitionDuration: Duration(milliseconds: 200),
+                                //     transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                                //   ),
+                                // );
+                              }
+
+
+
+
+                            },
+                            hoverColor: AppColors.whiteColor,
+                            splashColor: AppColors.whiteColor,
+                            minLeadingWidth: 60,
+                            minVerticalPadding: 10,
+                            horizontalTitleGap: 10,
+                            contentPadding: EdgeInsets.zero,
+
+                            leading: Padding(
+                              padding: const EdgeInsets.only(left: 4,bottom: 6),
+                              child: Container(
+                                width: 50,height: 60,
+                                decoration: BoxDecoration(
+                                   shape: BoxShape.circle,
+                                    color:
+                                    index == 0 ? AppColors.darkBlueColor1 :
+                                    index == 1 ? AppColors.darkRedColor :
+                                    index == 2 ? AppColors.greenColor2 :
+                                    index == 3 ? AppColors.orangeColor :
+                                    index == 4 ? AppColors.purpleColor2 :
+                                    index == 5 ? Colors.green :
+                                    index == 6 ? Colors.brown :
+                                    index == 7 ? Colors.deepOrange :
+
+                                    Colors.orangeAccent.withOpacity(0.2)
+                                ),
+                                child: Center(child: DummyData.settingList[index].icon),
+                              ),
+                            ),
+                            title: Text(DummyData.settingList[index].name.toString(), style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),),
+                            //      trailing: Icon(Icons.arrow_forward_ios, color: AppColors.purpleColor,size: 13,),
+                            trailing:
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(Icons.arrow_forward_ios, color: AppColors.greyColor,size: 14,),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20,bottom: 26,top: 10),
+              child: RoundButton(
+                width: size.width,
+                //isLoading: authViewModel.loading,
+                round: 30.0,
+                color: AppColors.orangeColor,
+                title: 'Logout',
+                onPress: () {
+                  // Navigator.pushNamed(context, RoutesName.dashView);
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => VerifyPhoneView(),
+                      transitionDuration: Duration(milliseconds: 300),
+                      transitionsBuilder: (_, a, __, c) => FadeTransition(opacity: a, child: c),
+                    ),
+                  );
+
+                  // Navigator.push(
+                  //   context,
+                  //   PageRouteBuilder(
+                  //     pageBuilder: (context, animation, secondaryAnimation) => PayoutMonthView(),
+                  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  //       const begin = Offset(1.0, 0.0);
+                  //       const end = Offset.zero;
+                  //       const curve = Curves.easeIn;
+                  //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                  //       var offsetAnimation = animation.drive(tween);
+                  //
+                  //       return SlideTransition(position: offsetAnimation, child: child);
+                  //     },
+                  //   ),
+                  // );
+
+                },
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
+
+          ],
         ),
       ),
     );

@@ -6,6 +6,7 @@ import 'package:jam3ia_flutter_app/res/components/app_text.dart';
 import 'package:jam3ia_flutter_app/res/components/round_button.dart';
 import 'package:jam3ia_flutter_app/utils/utils.dart';
 import 'package:jam3ia_flutter_app/view/payment/pay_in_methods.dart';
+import 'package:jam3ia_flutter_app/view/payment/payment_success_view.dart';
 import 'package:jam3ia_flutter_app/view/payment/payment_view.dart';
 
 class PayoutMonthView extends StatefulWidget {
@@ -41,7 +42,7 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
               child: Container(
                 // height: size.height*0.8,
                 decoration: const  BoxDecoration(
-                    color: AppColors.lightGreyColor,
+                    color: AppColors.whiteColor,
                     borderRadius:  BorderRadius.only(
                         topLeft:  Radius.circular(30.0),
                         topRight:  Radius.circular(30.0))),
@@ -91,9 +92,9 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
                           child: Text(
                             'Pay your first installment',
                             style: TextStyle(
-                                color: AppColors.darkGreenColor,
+                                color: AppColors.darkBlueColor1,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 15),
+                                fontSize: 18),
                           ),
                         ),
                       ],
@@ -102,58 +103,112 @@ class _PayoutMonthViewState extends State<PayoutMonthView> {
                       height: size.height*0.05,
                     ),
 
-
-                    SizedBox(
-                      height: size.height * 0.05,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20,bottom: 26,top: 26),
-                      child: RoundButton(
-                        width: size.width,
-                        //isLoading: authViewModel.loading,
-                        round: 30.0,
-                        color: AppColors.greenColor2,
-                        title: 'Pay Now',
-                        onPress: () {
-                          // Navigator.pushNamed(context, RoutesName.dashView);
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   PageRouteBuilder(
-                          //     pageBuilder: (context, animation, secondaryAnimation) => RequestCircleView(),
-                          //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                          //       const begin = Offset(1.0, 0.0);
-                          //       const end = Offset.zero;
-                          //       const curve = Curves.easeIn;
-                          //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                          //       var offsetAnimation = animation.drive(tween);
-                          //
-                          //       return SlideTransition(position: offsetAnimation, child: child);
-                          //     },
-                          //   ),
-                          // );
+                      padding: EdgeInsets.only(left: 16, right: 16, top: 30,bottom: 30),
+                      child: Container(
+                        // width: size.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0, right: 8),
+                              child: Container(
+                                decoration:
 
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => PayInMethods(),
-                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                const begin = Offset(1.0, 0.0);
-                                const end = Offset.zero;
-                                const curve = Curves.easeIn;
-                                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                                var offsetAnimation = animation.drive(tween);
-
-                                return SlideTransition(position: offsetAnimation, child: child);
-                              },
+                                BoxDecoration(
+                                  // boxShadow: const [
+                                  //   BoxShadow(
+                                  //       color: Colors.black26,
+                                  //       offset: Offset(0, 4),
+                                  //       blurRadius: 5.0)
+                                  // ],
+                                  color: AppColors.lightBlueColor2,
+                                  borderRadius: BorderRadius.circular(5),
+                                ) ,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                      minimumSize: MaterialStateProperty.all(Size(size.width*0.25, 50)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Colors.transparent),
+                                      // elevation: MaterialStateProperty.all(3),
+                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      'Cancel',
+                                      style:  TextStyle(
+                                          fontSize: 12,
+                                          color:Color(0xFF1972e6), overflow: TextOverflow.ellipsis, fontWeight: FontWeight.w600),
+                                    )),
+                              ),
                             ),
-                          );
+                            Padding(
+                              padding: const EdgeInsets.only(left: 0, right: 0),
+                              child: Container(
+                                decoration:
 
-                        },
+                                BoxDecoration(
+                                  // boxShadow: const [
+                                  //   BoxShadow(
+                                  //       color: Colors.black26,
+                                  //       offset: Offset(0, 4),
+                                  //       blurRadius: 5.0)
+                                  // ],
+                                  color: Color(0xFF1972e6),
+                                  borderRadius: BorderRadius.circular(5),
+                                ) ,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                      minimumSize: MaterialStateProperty.all(Size(size.width*0.62, 50)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(Colors.transparent),
+                                      // elevation: MaterialStateProperty.all(3),
+                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(
+                                          pageBuilder: (context, animation, secondaryAnimation) => PaymentSuccessView(),
+                                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                            const begin = Offset(1.0, 0.0);
+                                            const end = Offset.zero;
+                                            const curve = Curves.easeIn;
+                                            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                            var offsetAnimation = animation.drive(tween);
+
+                                            return SlideTransition(position: offsetAnimation, child: child);
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Pay Now',
+                                      style:  TextStyle(
+                                          fontSize: 12,
+                                          color:
+                                          AppColors.whiteColor, overflow: TextOverflow.ellipsis),
+                                    )),
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      height: size.height * 0.05,
-                    ),
+
 
                   ],
                 ),

@@ -80,55 +80,6 @@ class _HomeViewState extends State<HomeView> {
         child: Column(children: [
 
 
-
-          // SizedBox(
-          //   height: size.height*0.01,
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 10,right: 10),
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(10)
-          //     ),
-          //     child: Card(
-          //       child: CarouselSlider(
-          //           items: banners1,
-          //           options: CarouselOptions(
-          //             height: size.height*0.2,
-          //             // aspectRatio: 1/9,
-          //             viewportFraction: 1,
-          //             initialPage: 0,
-          //             enableInfiniteScroll: true,
-          //             reverse: false,
-          //             autoPlay: true,
-          //             autoPlayInterval: Duration(seconds: 3),
-          //             autoPlayAnimationDuration: Duration(milliseconds: 800),
-          //             autoPlayCurve: Curves.fastOutSlowIn,
-          //             enlargeCenterPage: true,
-          //             enlargeFactor: 0.3,
-          //             onPageChanged: (index, reason) {
-          //               setState(() {
-          //                 current = index;
-          //               });
-          //             },
-          //             scrollDirection: Axis.horizontal,
-          //           )
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // AnimatedSmoothIndicator(
-          //   activeIndex: current,
-          //   count: 3,//pages.length,
-          //   effect:  JumpingDotEffect(
-          //       dotHeight: 7,
-          //       dotWidth: 7,
-          //       jumpScale: .7,
-          //       verticalOffset: 10,
-          //       activeDotColor: AppColors.darkGreenColor,
-          //       dotColor: Colors.grey),
-          // ),
-
           Container(
               child:Stack(children: <Widget>[ //stack overlaps widgets
                 Opacity( //semi red clippath with more height and with 0.5 opacity

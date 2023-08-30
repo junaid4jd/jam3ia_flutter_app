@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jam3ia_flutter_app/res/colors.dart';
 import 'package:jam3ia_flutter_app/res/components/app_text.dart';
 import 'package:jam3ia_flutter_app/res/components/round_button.dart';
+import 'package:jam3ia_flutter_app/view/home/home_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -11,11 +12,13 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailAddressController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   String name = '', image = '';
-
+  int state = 1;
   @override
   void initState() {
     // TODO: implement initState
@@ -42,7 +45,507 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final double height = MediaQuery.of(context).size.height * 0.2;
+
     return Scaffold(
+
+      backgroundColor: AppColors.whiteColor,
+      appBar: AppBar(
+        elevation: 0,
+        iconTheme: IconThemeData(
+            color: Colors.black
+        ),
+
+        backgroundColor: AppColors.darkBlueColor1,
+        centerTitle: true,
+        leading:   GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Container(
+              width: 40.0,
+              height: 40.0,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.arrow_back, color: Colors.black,),
+            ),
+          ),
+        ),
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+              color: AppColors.whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: TextStylesData.titleFontSize),
+        ),
+
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+
+          Container(
+            height: size.height*0.28,
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                ClipPath(
+                  clipper: BezierClipper(state),
+                  child: Container(
+                    color :AppColors.darkBlueColor1,
+                    height: height,
+                  ),
+                ),
+
+                Positioned(
+                  top: size.height*0.08,
+                  child: Center(
+                      child: Stack(children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppColors.darkBlueColor1, width: 3)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipOval(
+                              child: profileImage == ''
+                                  ? Image.network(
+                                'https://i.pinimg.com/736x/f8/66/8e/f8668e5328cfb4938903406948383cf6.jpg',
+                                width: 120,
+                                // color: Colors.grey,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              )
+                                  : Image.network(
+                                profileImage.toString(),
+                                width: 120,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: size.width * 0.25,
+                          top: size.height * 0.13,
+                          child: InkWell(
+                            // onTap: () =>    _showPicker(context),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                // color: Colors.black.withOpacity(0.3), shape: BoxShape.circle,
+                                // border: Border.all(width: 1, color: Theme.of(context).primaryColor),
+                              ),
+                              child: Container(
+                                // height: 30,
+                                // width: 30,
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  //border: Border.all(width: 2, color: Colors.white),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black26,
+                                        offset: Offset(0, 2),
+                                        blurRadius: 1.0)
+                                  ],
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Icon(Icons.camera_alt, size: 17,color: AppColors.darkBlueColor,)
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ])),
+
+
+
+
+
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     shape: BoxShape.circle,
+                  //     border: Border.all(color: AppColors.darkBlueColor1, width: 3)
+                  //   ),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: ClipOval(
+                  //         child:  Image.network(
+                  //           'https://i.pinimg.com/736x/f8/66/8e/f8668e5328cfb4938903406948383cf6.jpg',
+                  //           width: 100,
+                  //           // color: Colors.grey,
+                  //           height: 100,
+                  //           fit: BoxFit.cover,
+                  //         )
+                  //
+                  //     ),
+                  //   ),
+                  // ),
+                ),
+
+              ],
+            ),
+          ),
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
+            Container(
+                width: size.width,
+                child: Center(
+                  child: Text(
+                    'John Doe',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
+            Container(
+                width: size.width,
+                child: Center(
+                  child: Text(
+                    'johndoe@gmail.com',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400),
+                  ),
+                )),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+
+
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: AppColors.lightGreyColor,
+                  border: Border.all(color:AppColors.lightGreyColor, )
+              ),
+              margin:
+
+              const EdgeInsets.only(left: 20, right: 20, top: 0),
+              child: TextFormField(
+                controller: _fullNameController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+                onChanged: (value) {
+                  // if(EmailValidator.validate(value)) {
+                  //   setState(() {
+                  //     isValid = true;
+                  //   });
+                  // } else {
+                  //   setState(() {
+                  //     isValid = false;
+                  //   });
+                  // }
+                },
+                decoration: InputDecoration(
+                  focusColor: Colors.white,
+                  fillColor: Colors.grey,
+                  hintText: 'First Name',
+                //  prefixIcon: Icon(Icons.person_outline_sharp,color: AppColors.darkBlueColor,),
+
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+
+                  //add prefix icon
+
+                  // errorText: "Error",
+
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: AppColors.lightGreyColor, width: 1.0),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  labelStyle: const TextStyle(
+                    color: AppColors.greyColor,
+                    fontSize: TextStylesData.smallFontSize,
+                    fontFamily: "verdana_regular",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+
+
+            SizedBox(
+              height: size.height * 0.02,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: AppColors.lightGreyColor,
+                  border: Border.all(color:AppColors.lightGreyColor, )
+              ),
+              margin:
+
+              const EdgeInsets.only(left: 20, right: 20, top: 0),
+              child: TextFormField(
+                controller: _lastNameController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+                onChanged: (value) {
+                  // if(EmailValidator.validate(value)) {
+                  //   setState(() {
+                  //     isValid = true;
+                  //   });
+                  // } else {
+                  //   setState(() {
+                  //     isValid = false;
+                  //   });
+                  // }
+                },
+                decoration: InputDecoration(
+                  focusColor: Colors.white,
+                  fillColor: Colors.grey,
+                  hintText: 'Last Name',
+                 // prefixIcon: Icon(Icons.person_outline_sharp,color: AppColors.darkBlueColor,),
+
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+
+                  //add prefix icon
+
+                  // errorText: "Error",
+
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: AppColors.lightGreyColor, width: 1.0),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  labelStyle: const TextStyle(
+                    color: AppColors.greyColor,
+                    fontSize: TextStylesData.smallFontSize,
+                    fontFamily: "verdana_regular",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.025,
+            ),
+            //
+            // Container(
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(5.0),
+            //       color: AppColors.lightGreyColor,
+            //       border: Border.all(color:AppColors.lightGreyColor, )
+            //   ),
+            //   margin:
+            //
+            //   const EdgeInsets.only(left: 20, right: 20, top: 0),
+            //   child: TextFormField(
+            //     controller: _emailAddressController,
+            //     textInputAction: TextInputAction.next,
+            //     keyboardType: TextInputType.emailAddress,
+            //     style: const TextStyle(
+            //       fontSize: 14,
+            //       color: Colors.black,
+            //     ),
+            //     onChanged: (value) {
+            //       // if(EmailValidator.validate(value)) {
+            //       //   setState(() {
+            //       //     isValid = true;
+            //       //   });
+            //       // } else {
+            //       //   setState(() {
+            //       //     isValid = false;
+            //       //   });
+            //       // }
+            //     },
+            //     decoration: InputDecoration(
+            //       focusColor: Colors.white,
+            //       fillColor: Colors.grey,
+            //       hintText: 'Email',
+            //      // prefixIcon: Icon(Icons.email_outlined,color: AppColors.darkBlueColor,),
+            //
+            //       contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            //
+            //       //add prefix icon
+            //
+            //       // errorText: "Error",
+            //
+            //       enabledBorder: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(10.0),
+            //         borderSide: BorderSide(
+            //           color:  AppColors.lightGreyColor,
+            //           width: 1,
+            //         ),
+            //       ),
+            //
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(10.0),
+            //         borderSide: BorderSide(
+            //           color:  AppColors.lightGreyColor,
+            //           width: 1,
+            //         ),
+            //       ),
+            //
+            //       focusedBorder: OutlineInputBorder(
+            //         borderSide:
+            //         BorderSide(color: AppColors.lightGreyColor, width: 1.0),
+            //         borderRadius: BorderRadius.circular(10.0),
+            //       ),
+            //       labelStyle: const TextStyle(
+            //         color: AppColors.greyColor,
+            //         fontSize: TextStylesData.smallFontSize,
+            //         fontFamily: "verdana_regular",
+            //         fontWeight: FontWeight.w400,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            //
+            //
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: AppColors.lightGreyColor,
+              ),
+
+              margin:
+
+              const EdgeInsets.only(left: 20, right: 20, top: 0),
+              child: TextFormField(
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                controller: _passwordController,
+                obscureText:  false,
+                textInputAction: TextInputAction.done,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+                decoration: InputDecoration(
+                  focusColor: Colors.white,
+                 // prefixIcon: Icon(Icons.lock_outline,color: AppColors.darkBlueColor,),
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                       // obsecurePassword.value = !obsecurePassword.value;
+                      },
+                      child: Icon(
+                         Icons.arrow_forward_ios,
+                        size: 20,
+                        color: AppColors.greyColor.withOpacity(0.5),
+                      )),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color:  AppColors.lightGreyColor,
+                      width: 1,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                    BorderSide(color: AppColors.lightGreyColor, width: 1.0),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  fillColor: Colors.grey,
+                  //labelText: 'Password',
+                  hintText: 'Password',
+                  labelStyle: const TextStyle(
+                    color: AppColors.greyColor,
+                    fontSize: TextStylesData.smallFontSize,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.04,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: RoundButton(
+                width: size.width,
+                //isLoading: authViewModel.loading,
+                round: 30.0,
+                color: AppColors.darkBlueColor1,
+                title: 'Save',
+                onPress: () {
+                  // Navigator.pushNamed(context, RoutesName.dashView);
+                },
+              ),
+            ),
+
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+
+
+
+
+        ],),
+      ),
+    );
+
+      Scaffold(
       backgroundColor: AppColors.lightGreyColor3,
       body: Container(
         width: size.width,
@@ -726,4 +1229,94 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
+}
+
+
+class WaveClipper12 extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+
+    var path = new Path();
+    path.lineTo(1, size.height); //start path with this if you are making at bottom
+
+    var firstStart = Offset(size.width / 5, size.height);
+    //fist point of quadratic bezier curve
+    var firstEnd = Offset(size.width / 2.25, size.height - 50.0);
+    //second point of quadratic bezier curve
+    path.quadraticBezierTo(firstStart.dx, firstStart.dy, firstEnd.dx, firstEnd.dy);
+
+    var secondStart = Offset(size.width - (size.width / 3.24), size.height - 105);
+    //third point of quadratic bezier curve
+    var secondEnd = Offset(size.width, size.height - 10);
+    //fourth point of quadratic bezier curve
+    path.quadraticBezierTo(secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
+    path.quadraticBezierTo(secondStart.dx, secondStart.dy, secondEnd.dx, secondEnd.dy);
+
+    path.lineTo(size.width, 0); //end with this path if you are making wave at bottom
+    path.lineTo(size.width, 0); //end with this path if you are making wave at bottom
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false; //if new instance have different instance than old instance
+    //then you must return true;
+  }
+}
+
+
+
+class BezierClipper extends CustomClipper<Path>{
+
+  final int state;
+  BezierClipper(this.state);
+
+  Path _getInitialClip(Size size) {
+    Path path = Path();
+    final double _xScaling = size.width / 414;
+    final double _yScaling = size.height / 363.15;
+    path.lineTo(-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling);
+    path.cubicTo(-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,23.461000000000002 * _xScaling,363.15099999999995 * _yScaling,71.553 * _xScaling,363.15099999999995 * _yScaling,);
+    path.cubicTo(119.645 * _xScaling,363.15099999999995 * _yScaling,142.21699999999998 * _xScaling,300.186 * _yScaling,203.29500000000002 * _xScaling,307.21 * _yScaling,);
+    path.cubicTo(264.373 * _xScaling,314.234 * _yScaling,282.666 * _xScaling,333.47299999999996 * _yScaling,338.408 * _xScaling,333.47299999999996 * _yScaling,);
+    path.cubicTo(394.15000000000003 * _xScaling,333.47299999999996 * _yScaling,413.99600000000004 * _xScaling,254.199 * _yScaling,413.99600000000004 * _xScaling,254.199 * _yScaling,);
+    path.cubicTo(413.99600000000004 * _xScaling,254.199 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,);
+    path.cubicTo(413.99600000000004 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,);
+    path.cubicTo(-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,);
+    return path;
+  }
+
+  Path _getFinalClip(Size size) {
+    Path path = Path();
+    final double _xScaling = size.width / 414;
+    final double _yScaling = size.height / 363.15;
+    path.lineTo(-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling);
+    path.cubicTo(-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,23.461000000000002 * _xScaling,363.15099999999995 * _yScaling,71.553 * _xScaling,363.15099999999995 * _yScaling,);
+    path.cubicTo(119.645 * _xScaling,363.15099999999995 * _yScaling,142.21699999999998 * _xScaling,300.186 * _yScaling,203.29500000000002 * _xScaling,307.21 * _yScaling,);
+    path.cubicTo(264.373 * _xScaling,314.234 * _yScaling,282.666 * _xScaling,333.47299999999996 * _yScaling,338.408 * _xScaling,333.47299999999996 * _yScaling,);
+    path.cubicTo(394.15000000000003 * _xScaling,333.47299999999996 * _yScaling,413.99600000000004 * _xScaling,254.199 * _yScaling,413.99600000000004 * _xScaling,254.199 * _yScaling,);
+    path.cubicTo(413.99600000000004 * _xScaling,254.199 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,);
+    path.cubicTo(413.99600000000004 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,);
+    path.cubicTo(-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,-0.003999999999997783 * _xScaling,341.78499999999997 * _yScaling,);
+    return path;
+    // Path path = Path();
+    // final double _xScaling = size.width / 414;
+    // final double _yScaling = size.height / 301.69;
+    // path.lineTo(-0.003999999999997783 * _xScaling,217.841 * _yScaling);
+    // path.cubicTo(-0.003999999999997783 * _xScaling,217.841 * _yScaling,19.14 * _xScaling,265.91999999999996 * _yScaling,67.233 * _xScaling,265.91999999999996 * _yScaling,);
+    // path.cubicTo(115.326 * _xScaling,265.91999999999996 * _yScaling,112.752 * _xScaling,234.611 * _yScaling,173.83299999999997 * _xScaling,241.635 * _yScaling,);
+    // path.cubicTo(234.914 * _xScaling,248.659 * _yScaling,272.866 * _xScaling,301.691 * _yScaling,328.608 * _xScaling,301.691 * _yScaling,);
+    // path.cubicTo(384.34999999999997 * _xScaling,301.691 * _yScaling,413.99600000000004 * _xScaling,201.977 * _yScaling,413.99600000000004 * _xScaling,201.977 * _yScaling,);
+    // path.cubicTo(413.99600000000004 * _xScaling,201.977 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,413.99600000000004 * _xScaling,0 * _yScaling,);
+    // path.cubicTo(413.99600000000004 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999976467 * _xScaling,0 * _yScaling,);
+    // path.cubicTo(-0.003999999999976467 * _xScaling,0 * _yScaling,-0.003999999999997783 * _xScaling,217.841 * _yScaling,-0.003999999999997783 * _xScaling,217.841 * _yScaling,);
+    // return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
+
+  @override
+  Path getClip(Size size) =>  _getInitialClip(size);
 }

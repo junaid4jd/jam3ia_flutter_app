@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:jam3ia_flutter_app/model/dummy_data.dart';
 import 'package:jam3ia_flutter_app/res/colors.dart';
 import 'package:jam3ia_flutter_app/res/components/app_text.dart';
 import 'package:jam3ia_flutter_app/res/components/round_button.dart';
+import 'package:jam3ia_flutter_app/view/home/home_view.dart';
+import 'package:jam3ia_flutter_app/view/payment/pay_in_methods.dart';
+import 'package:jam3ia_flutter_app/view/payment/pay_out_methods.dart';
+import 'package:jam3ia_flutter_app/view/payment/payment_success_view.dart';
 import 'package:jam3ia_flutter_app/view/request_circle/request_circle_start_view.dart';
 enum PaymentMethod { payIn, payOut }
 enum PaymentMethodIn { jawwalPay, reflectAccount, creditDebit, bankTransfer, directSalary, cash }
@@ -21,6 +26,7 @@ class _PaymentViewState extends State<PaymentView> {
   PaymentMethod _paymentMethod = PaymentMethod.payIn;
   PaymentMethodIn _paymentMethodIn = PaymentMethodIn.jawwalPay;
   PaymentMethodOut _paymentMethodOut = PaymentMethodOut.jawwalPay;
+  int selectedIndex = 1000;
 
 
   void _showBottomSheetIn(BuildContext context) {
@@ -455,7 +461,7 @@ class _PaymentViewState extends State<PaymentView> {
                           Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => RequestCircleView(),
+                              pageBuilder: (context, animation, secondaryAnimation) => PaymentSuccessView(),
                               transitionsBuilder: (context, animation, secondaryAnimation, child) {
                                 const begin = Offset(1.0, 0.0);
                                 const end = Offset.zero;
@@ -498,105 +504,202 @@ class _PaymentViewState extends State<PaymentView> {
       appBar: AppBar(
         elevation: 0,
         iconTheme: IconThemeData(
-            color: Colors.black
+            color: Colors.white
         ),
 
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.darkBlueColor,
         centerTitle: true,
         automaticallyImplyLeading: true,
         title: const Text(
           'Payment',
           style: TextStyle(
-              color: AppColors.darkGreenColor,
+              color: AppColors.whiteColor,
               fontWeight: FontWeight.bold,
               fontSize: TextStylesData.titleFontSize),
         ),
 
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height*0.015,
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                child:Stack(children: <Widget>[ //stack overlaps widgets
+                  Opacity( //semi red clippath with more height and with 0.5 opacity
+                    opacity: 0.0,
+                    child: ClipPath(
+                      clipper:WaveClipper(), //set our custom wave clipper
+                      child:Container(
+                        color: AppColors.darkBlueColor,
+                        height:180,
+                      ),
+                    ),
+                  ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: 8,right: 8, bottom: 8),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white
-              ),
-              child: ListTile(
-                onTap: () {
-                  setState(() {
-                    _paymentMethod = PaymentMethod.payIn;
-                  });
-                  _showBottomSheetIn(context);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) => AddCardScreen()));
-                },
-                title:  Row(
+                  ClipPath(  //upper clippath with less height
+                    clipper:WaveClipper(), //set our custom wave clipper.
+                    child:Container(
+                      padding: EdgeInsets.only(bottom: 50),
+                      color:AppColors.darkBlueColor,
+                      height:160,
+                      alignment: Alignment.topLeft,
+
+
+                    ),
+                  ),
+                ],)
+            ),
+
+
+            Padding(
+              padding: const EdgeInsets.only(left: 10,right: 10),
+              child: Container(
+
+                decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(30)
+                ),
+
+                //            height: size.height,
+
+                child: Column(
+
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 10),
-                    //   child: Image.asset('assets/images/credit.png', fit: BoxFit.scaleDown,
-                    //     height: 30,
-                    //     width: 50,
-                    //   ),
+                    Center(
+                      child: SizedBox(
+                        height: size.height*0.25,
+                        width: size.width*0.7,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Image.asset('assets/images/payIn.jpg', fit: BoxFit.scaleDown,
+                            // height: size.height*0.5,
+                            width: size.width*0.6,
+                            // height: 80,
+                            // width: 80,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: size.height * 0.02,
                     // ),
-                    Text('Pay-in'),
-                  ],
-                ),
-                leading: Radio(
-                  value: PaymentMethod.payIn,
-                  groupValue: _paymentMethod,
-                  activeColor: AppColors.greenColor2,
-                  onChanged: (PaymentMethod? value) {
-                    _showBottomSheetIn(context);
-                    setState(() {
-                      _paymentMethod = value!;
-                    });
-                  },
-                ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20, ),
+                      child: Container(
+                        // width: size.width*0.9,
+                        alignment: Alignment.centerLeft,
+                        child: Text('Enjoy financial flexibility: Pay in effortlessly, and get swift payouts. Manage your funds seamlessly', style: TextStyle(color:
+                        AppColors.blackColor
+                            , fontSize: 14, fontWeight: FontWeight.w400),textAlign: TextAlign.center,),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    Container(
+                      height: size.height*0.2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8,right: 8),
+                        // implement GridView.builder
+                        child: GridView.builder(
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisExtent: 80,
+                              crossAxisSpacing: 10,
+
+                              mainAxisSpacing: 10,
+                              // Number of columns in the grid
+                            ),
+
+                            itemCount: DummyData.paymentMethodList.length,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return  GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                  });
+
+                                  if(index == 0) {
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, animation, secondaryAnimation) => PayInMethods(),
+                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                          const begin = Offset(1.0, 0.0);
+                                          const end = Offset.zero;
+                                          const curve = Curves.easeIn;
+                                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                          var offsetAnimation = animation.drive(tween);
+
+                                          return SlideTransition(position: offsetAnimation, child: child);
+                                        },
+                                      ),
+                                    );
+                                  } else if (index == 1) {
+
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, animation, secondaryAnimation) => PayOutMethods(),
+                                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                          const begin = Offset(1.0, 0.0);
+                                          const end = Offset.zero;
+                                          const curve = Curves.easeIn;
+                                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                                          var offsetAnimation = animation.drive(tween);
+
+                                          return SlideTransition(position: offsetAnimation, child: child);
+                                        },
+                                      ),
+                                    );
+
+                                  }
+
+                                },
+                                child: Container(
+                                  //height: 80,
+                                  decoration: BoxDecoration(
+                                    // color: AppColors.orangeColor,
+                                    // color:
+                                    //  index == 0 ? AppColors.orangeColor :
+                                    // AppColors.greenColor2,
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(color:
+                                      selectedIndex == index ? AppColors.orangeColor :
+                                      AppColors.greyColor, width: 0.5),
+
+
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+
+                                        Text(
+
+                                          DummyData.paymentMethodList[index].name
+                                          , style: TextStyle(color: AppColors.blackColor, fontSize: 13, fontWeight: FontWeight.w500),)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+
+
+
+
+                  ],),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8,right: 8),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white
-              ),
-              child: ListTile(
-                onTap: () {
-                  setState(() {
-                    _paymentMethod = PaymentMethod.payOut;
-                  });
-                  _showBottomSheetOut(context);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) => AddCardScreen()));
-                },
-                title:  Row(
-                  children: [
-                    Text('Pay-out'),
-                  ],
-                ),
-                leading: Radio(
-                  value: PaymentMethod.payOut,
-                  groupValue: _paymentMethod,
-                  activeColor: AppColors.greenColor2,
-                  onChanged: (PaymentMethod? value) {
-                    _showBottomSheetOut(context);
-                    setState(() {
-                      _paymentMethod = value!;
-                    });
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
+
+
+          ],
+        ),
       ),
     );
   }
