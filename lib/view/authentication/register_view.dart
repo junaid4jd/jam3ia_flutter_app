@@ -653,10 +653,15 @@ class _RegisterViewState extends State<RegisterView> {
                               title: 'Register',
                               onPress: () {
                                 Navigator.pushNamed(context, RoutesName.dashView);
+                                Utils.flushBarErrorMessage('Account created successfully', context, AppColors.darkGreenColor, 'Success', 1);
+
+                                Future.delayed(Duration(seconds: 2)).then((value) {
+                                  Utils.flushBarErrorMessage('An email has been sent to you with documents that require your signature. Please upload them to app and complete the registration process', context,
+                                      AppColors.greenColor2, 'Attention', 5);
+                                });
 
                                 // if (_emailAddressController.text.isEmpty) {
-                                Utils.flushBarErrorMessage('An email has been sent to you with documents that require your signature. Please upload them to app and complete the registration process', context,
-                                    AppColors.greenColor2, 'Attention', 8);
+
 
                                 // } else if (_passwordController.text.isEmpty) {
                                 //   Utils.flushBarErrorMessage('Enter password ', context,

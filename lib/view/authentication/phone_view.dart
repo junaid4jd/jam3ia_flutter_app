@@ -7,6 +7,7 @@ import 'package:jam3ia_flutter_app/res/colors.dart';
 import 'package:jam3ia_flutter_app/res/components/app_text.dart';
 import 'package:jam3ia_flutter_app/res/components/round_button.dart';
 import 'package:jam3ia_flutter_app/utils/routes/routes_name.dart';
+import 'package:jam3ia_flutter_app/utils/utils.dart';
 import 'package:jam3ia_flutter_app/view/authentication/login_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -180,7 +181,10 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                 color: Color(0xFF495AFF),
                 title: 'Verify',
                 onPress: () {
+
+
                 registerUser(context);
+                Utils.flushBarErrorMessage('Code sent to your number', context, AppColors.darkGreenColor, 'Success', 3);
                   // Navigator.pushNamed(context, RoutesName.login);
 
                   // if (_emailAddressController.text.isEmpty) {
@@ -622,6 +626,9 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                                     },
                                   ),
                                 );
+
+                                Utils.flushBarErrorMessage('Code successfully verified', context, AppColors.darkGreenColor, 'Success', 3);
+
 
 
 

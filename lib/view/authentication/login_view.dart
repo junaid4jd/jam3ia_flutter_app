@@ -338,6 +338,7 @@ class _LoginViewState extends State<LoginView> {
                                               },
                                             ),
                                           );
+                                          Utils.flushBarErrorMessage('Successfully Login', context, AppColors.darkGreenColor, 'Success', 2);
 
                                         //  Navigator.pushNamed(context, RoutesName.dashView);
 
@@ -454,6 +455,8 @@ class _LoginViewState extends State<LoginView> {
                                             },
                                           ),
                                         );
+
+
 
                                       },
                                       child: Row(
